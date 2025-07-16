@@ -1,0 +1,197 @@
+  [1m[35m (0.2ms)[0m  [1m[35mDROP DATABASE IF EXISTS `payment_system_development`[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP DATABASE IF EXISTS `payment_system_test`[0m
+  [1m[35m (5.7ms)[0m  [1m[35mCREATE DATABASE `payment_system_development` DEFAULT CHARACTER SET `utf8mb4`[0m
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE DATABASE `payment_system_test` DEFAULT CHARACTER SET `utf8mb4`[0m
+Started GET "/" for ::1 at 2025-07-16 13:31:11 -0600
+  [1m[35m (6.5ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL PRIMARY KEY)[0m
+  [1m[35m (8.3ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) NOT NULL PRIMARY KEY, `value` varchar(255), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (4.6ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/robertogonzalez/.rbenv/versions/3.1.2/lib/ruby/gems/3.1.0/gems/railties-7.2.2.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/robertogonzalez/.rbenv/versions/3.1.2/lib/ruby/gems/3.1.0/gems/railties-7.2.2.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 0.2ms | GC: 0.0ms)
+Completed 200 OK in 9ms (Views: 2.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/icon.png" for ::1 at 2025-07-16 13:31:11 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/icon.png"):
+  
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT GET_LOCK('2960691005376265350', 0)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.3ms)[0m  [1m[34mSELECT * FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' ORDER BY `ar_internal_metadata`.`key` ASC LIMIT 1[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.8ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'development', '2025-07-16 19:32:23.055876', '2025-07-16 19:32:23.055878')[0m
+Migrating to CreatePayments (20250716193215)
+  [1m[35m (7.0ms)[0m  [1m[35mCREATE TABLE `payments` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `account_id` int, `amount` decimal, `status` varchar(255), `paid_at` datetime(6), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20250716193215')[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT RELEASE_LOCK('2960691005376265350')[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Started GET "/" for ::1 at 2025-07-16 13:43:56 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/robertogonzalez/.rbenv/versions/3.1.2/lib/ruby/gems/3.1.0/gems/railties-7.2.2.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/robertogonzalez/.rbenv/versions/3.1.2/lib/ruby/gems/3.1.0/gems/railties-7.2.2.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 0.3ms | GC: 0.0ms)
+Completed 200 OK in 5ms (Views: 1.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.2ms)
+
+
+Started POST "/api/payments" for ::1 at 2025-07-16 13:44:41 -0600
+Processing by Api::PaymentsController#create as */*
+  Parameters: {"account_id"=>1, "amount"=>250.5, "payment"=>{"account_id"=>1, "amount"=>250.5}}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.1ms)
+
+
+  
+Zeitwerk::NameError (wrong constant name PaymentRepository.rb
+
+      CNAME_VALIDATOR.const_defined?(cname, false)
+                     ^^^^^^^^^^^^^^^ inferred by Module from file
+
+  /Users/robertogonzalez/Documents/Sandboxes/payment_system/payment_system/app/contexts/pagos/infrastructure/repositories/payment_repository.rb.rb
+
+Possible ways to address this:
+
+  * Tell Zeitwerk to ignore this particular file.
+  * Tell Zeitwerk to ignore one of its parent directories.
+  * Rename the file to comply with the naming conventions.
+  * Modify the inflector to handle this case.
+
+
+      raise Zeitwerk::NameError.new(<<~MESSAGE, error.name)
+      ^^^^^):
+
+Causes:
+NameError (wrong constant name PaymentRepository.rb
+
+      CNAME_VALIDATOR.const_defined?(cname, false)
+                     ^^^^^^^^^^^^^^^)
+  
+app/controllers/api/payments_controller.rb:5:in `create'
+Started POST "/api/payments" for ::1 at 2025-07-16 13:46:28 -0600
+Processing by Api::PaymentsController#create as */*
+  Parameters: {"account_id"=>1, "amount"=>250.5, "payment"=>{"account_id"=>1, "amount"=>250.5}}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.1ms)
+
+
+  
+Zeitwerk::NameError (wrong constant name PaymentRepository.rb
+
+      CNAME_VALIDATOR.const_defined?(cname, false)
+                     ^^^^^^^^^^^^^^^ inferred by Module from file
+
+  /Users/robertogonzalez/Documents/Sandboxes/payment_system/payment_system/app/contexts/pagos/infrastructure/repositories/payment_repository.rb.rb
+
+Possible ways to address this:
+
+  * Tell Zeitwerk to ignore this particular file.
+  * Tell Zeitwerk to ignore one of its parent directories.
+  * Rename the file to comply with the naming conventions.
+  * Modify the inflector to handle this case.
+
+
+      raise Zeitwerk::NameError.new(<<~MESSAGE, error.name)
+      ^^^^^):
+
+Causes:
+NameError (wrong constant name PaymentRepository.rb
+
+      CNAME_VALIDATOR.const_defined?(cname, false)
+                     ^^^^^^^^^^^^^^^)
+  
+app/controllers/api/payments_controller.rb:5:in `create'
+Started POST "/api/payments" for ::1 at 2025-07-16 13:46:53 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by Api::PaymentsController#create as */*
+  Parameters: {"account_id"=>1, "amount"=>250.5, "payment"=>{"account_id"=>1, "amount"=>250.5}}
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.2ms)
+
+
+  
+NameError (undefined local variable or method `byebug' for #<Api::PaymentsController:0x00000000008868>
+
+    byebug
+    ^^^^^^):
+  
+app/controllers/api/payments_controller.rb:5:in `create'
+Started POST "/api/payments" for ::1 at 2025-07-16 13:48:01 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by Api::PaymentsController#create as */*
+  Parameters: {"account_id"=>1, "amount"=>250.5, "payment"=>{"account_id"=>1, "amount"=>250.5}}
+Completed 500 Internal Server Error in 96416ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 25.9ms)
+
+
+  
+SystemExit (exit):
+
+Causes:
+Zeitwerk::NameError (wrong constant name PaymentRepository.rb
+
+      CNAME_VALIDATOR.const_defined?(cname, false)
+                     ^^^^^^^^^^^^^^^ inferred by Module from file
+
+  /Users/robertogonzalez/Documents/Sandboxes/payment_system/payment_system/app/contexts/pagos/infrastructure/repositories/payment_repository.rb.rb
+
+Possible ways to address this:
+
+  * Tell Zeitwerk to ignore this particular file.
+  * Tell Zeitwerk to ignore one of its parent directories.
+  * Rename the file to comply with the naming conventions.
+  * Modify the inflector to handle this case.
+
+
+      raise Zeitwerk::NameError.new(<<~MESSAGE, error.name)
+      ^^^^^)
+NameError (wrong constant name PaymentRepository.rb
+
+      CNAME_VALIDATOR.const_defined?(cname, false)
+                     ^^^^^^^^^^^^^^^)
+  
+(byebug):1:in `exit'
+(byebug):1:in `rescue in process_action'
+Started POST "/api/payments" for ::1 at 2025-07-16 13:49:44 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by Api::PaymentsController#create as */*
+  Parameters: {"account_id"=>1, "amount"=>250.5, "payment"=>{"account_id"=>1, "amount"=>250.5}}
+Completed 500 Internal Server Error in 78259ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 32.1ms)
+
+
+  
+SystemExit (exit):
+
+Causes:
+Zeitwerk::NameError (wrong constant name PaymentRepository.rb
+
+      CNAME_VALIDATOR.const_defined?(cname, false)
+                     ^^^^^^^^^^^^^^^ inferred by Module from file
+
+  /Users/robertogonzalez/Documents/Sandboxes/payment_system/payment_system/app/contexts/pagos/infrastructure/repositories/payment_repository.rb.rb
+
+Possible ways to address this:
+
+  * Tell Zeitwerk to ignore this particular file.
+  * Tell Zeitwerk to ignore one of its parent directories.
+  * Rename the file to comply with the naming conventions.
+  * Modify the inflector to handle this case.
+
+
+      raise Zeitwerk::NameError.new(<<~MESSAGE, error.name)
+      ^^^^^)
+NameError (wrong constant name PaymentRepository.rb
+
+      CNAME_VALIDATOR.const_defined?(cname, false)
+                     ^^^^^^^^^^^^^^^)
+  
+(byebug):1:in `exit'
+(byebug):1:in `rescue in process_action'
+Started POST "/api/payments" for ::1 at 2025-07-16 13:51:12 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by Api::PaymentsController#create as */*
+  Parameters: {"account_id"=>1, "amount"=>250.5, "payment"=>{"account_id"=>1, "amount"=>250.5}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/contexts/pagos/infrastructure/repositories/payment_repository.rb:8:in `create'
+  [1m[36mPaymentRecord Create (1.4ms)[0m  [1m[32mINSERT INTO `payments` (`account_id`, `amount`, `status`, `paid_at`, `created_at`, `updated_at`) VALUES (1, 250, 'paid', '2025-07-16 19:51:25.400226', '2025-07-16 19:51:25.422433', '2025-07-16 19:51:25.422433')[0m
+  ↳ app/contexts/pagos/infrastructure/repositories/payment_repository.rb:8:in `create'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/contexts/pagos/infrastructure/repositories/payment_repository.rb:8:in `create'
+Completed 201 Created in 12851ms (Views: 0.2ms | ActiveRecord: 9.3ms (1 query, 0 cached) | GC: 18.7ms)
+
+
+  [1m[36mPaymentRecord Load (3.7ms)[0m  [1m[34mSELECT `payments`.* FROM `payments` /* loading for pp */ LIMIT 11[0m
